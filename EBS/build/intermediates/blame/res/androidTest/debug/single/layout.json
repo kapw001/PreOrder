@@ -1,0 +1,94 @@
+[
+    {
+        "merged": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\list_storedcard.xml",
+        "source": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\bundles\\debug\\res\\layout\\list_storedcard.xml"
+    },
+    {
+        "merged": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\inflate_discurency.xml",
+        "source": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\bundles\\debug\\res\\layout\\inflate_discurency.xml"
+    },
+    {
+        "merged": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\layout_img_cvv.xml",
+        "source": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\bundles\\debug\\res\\layout\\layout_img_cvv.xml"
+    },
+    {
+        "merged": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\layout_debitcard.xml",
+        "source": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\bundles\\debug\\res\\layout\\layout_debitcard.xml"
+    },
+    {
+        "merged": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\list_popup.xml",
+        "source": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\bundles\\debug\\res\\layout\\list_popup.xml"
+    },
+    {
+        "merged": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\layout_netbanking.xml",
+        "source": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\bundles\\debug\\res\\layout\\layout_netbanking.xml"
+    },
+    {
+        "merged": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\activity_payment_details.xml",
+        "source": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\bundles\\debug\\res\\layout\\activity_payment_details.xml"
+    },
+    {
+        "merged": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\layout_cashcard.xml",
+        "source": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\bundles\\debug\\res\\layout\\layout_cashcard.xml"
+    },
+    {
+        "merged": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\list_row.xml",
+        "source": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\bundles\\debug\\res\\layout\\list_row.xml"
+    },
+    {
+        "merged": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\activity_payment.xml",
+        "source": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\bundles\\debug\\res\\layout\\activity_payment.xml"
+    },
+    {
+        "merged": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\layout_creditcard.xml",
+        "source": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\bundles\\debug\\res\\layout\\layout_creditcard.xml"
+    },
+    {
+        "merged": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\item_major.xml",
+        "source": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\bundles\\debug\\res\\layout\\item_major.xml"
+    },
+    {
+        "merged": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\adapter_item_major_bank.xml",
+        "source": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\bundles\\debug\\res\\layout\\adapter_item_major_bank.xml"
+    },
+    {
+        "merged": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\inflater_amount.xml",
+        "source": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\bundles\\debug\\res\\layout\\inflater_amount.xml"
+    },
+    {
+        "merged": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\payment_detail2.xml",
+        "source": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\bundles\\debug\\res\\layout\\payment_detail2.xml"
+    },
+    {
+        "merged": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\activity_payment_failure.xml",
+        "source": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\bundles\\debug\\res\\layout\\activity_payment_failure.xml"
+    },
+    {
+        "merged": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\list_group.xml",
+        "source": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\bundles\\debug\\res\\layout\\list_group.xml"
+    },
+    {
+        "merged": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\adapter_major_banks.xml",
+        "source": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\bundles\\debug\\res\\layout\\adapter_major_banks.xml"
+    },
+    {
+        "merged": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\adapter_customalert.xml",
+        "source": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\bundles\\debug\\res\\layout\\adapter_customalert.xml"
+    },
+    {
+        "merged": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\layout_storedcard.xml",
+        "source": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\bundles\\debug\\res\\layout\\layout_storedcard.xml"
+    },
+    {
+        "merged": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\list_storedcard_popup.xml",
+        "source": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\bundles\\debug\\res\\layout\\list_storedcard_popup.xml"
+    },
+    {
+        "merged": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\activity_idle_time_out.xml",
+        "source": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\bundles\\debug\\res\\layout\\activity_idle_time_out.xml"
+    },
+    {
+        "merged": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\tes_transaction_details.xml",
+        "source": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\bundles\\debug\\res\\layout\\tes_transaction_details.xml"
+    }
+]

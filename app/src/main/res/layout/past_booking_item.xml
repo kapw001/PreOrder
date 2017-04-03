@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="1dp">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardUseCompatPadding="true"
+        card_view:cardPreventCornerOverlap="false"
+        card_view:cardElevation="5dp">
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Restaurant Name"
+                    android:background="@color/colorPrimaryDark"
+                    android:textColor="#FFFFFF"
+                    android:id="@+id/rest_name_past"
+                    android:textSize="18dp"
+                    android:textAlignment="center"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="2"
+                android:paddingTop="10dp">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:id="@+id/fields">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:text="Date"
+                            android:textColor="@color/colorPrimary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:padding="5dp"
+                            android:id="@+id/textView19" />
+
+                        <TextView
+                            android:text="Time"
+                            android:textColor="@color/colorPrimary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:padding="5dp"
+                            android:id="@+id/textView15" />
+
+                        <TextView
+                            android:text="Booking ID"
+                            android:textColor="@color/colorPrimary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:padding="5dp"
+                            android:id="@+id/textView17" />
+
+                        <TextView
+                            android:text="Advance"
+                            android:textColor="@color/colorPrimary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:padding="5dp"
+                            android:id="@+id/textView16" />
+
+                        <TextView
+                            android:text="Total"
+                            android:textColor="@color/colorPrimary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:padding="5dp"
+                            android:id="@+id/textView18" />
+
+                        <TextView
+                            android:text="Booking Status"
+                            android:textAlignment="center"
+                            android:padding="5dp"
+                            android:textColor="@color/colorPrimary"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/textView52" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:id="@+id/values">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:text="Date"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:padding="5dp"
+                            android:id="@+id/textView53" />
+
+                        <TextView
+                            android:text="Time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:padding="5dp"
+                            android:id="@+id/textView54" />
+
+                        <TextView
+                            android:text="Booking ID"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:padding="5dp"
+                            android:id="@+id/textView55" />
+
+                        <TextView
+                            android:text="Advance"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:padding="5dp"
+                            android:id="@+id/textView57" />
+
+                        <TextView
+                            android:text="Total"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:padding="5dp"
+                            android:id="@+id/textView58" />
+
+                        <TextView
+                            android:text="status"
+                            android:textColor="#FFFFFF"
+                            android:background="@color/colorAccent"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:padding="5dp"
+                            android:id="@+id/textView59" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            card_view:srcCompat="@drawable/paid"
+            android:id="@+id/imageView14" />
+
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

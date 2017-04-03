@@ -1,0 +1,49 @@
+[
+    {
+        "outputFile": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-v11\\values-v11.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endLine": 4,
+                    "endColumn": 12,
+                    "endOffset": 193
+                },
+                "from": {
+                    "file": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\bundles\\debug\\res\\values-v11\\values-v11.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endLine": 4,
+                        "endColumn": 12,
+                        "endOffset": 193
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 5,
+                    "startColumn": 4,
+                    "startOffset": 198,
+                    "endLine": 8,
+                    "endColumn": 10,
+                    "endOffset": 446
+                },
+                "from": {
+                    "file": "C:\\Users\\SUB\\AndroidStudioProjects\\PreOrder\\EBS\\build\\intermediates\\bundles\\debug\\res\\values-v11\\values-v11.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 198,
+                        "endLine": 8,
+                        "endColumn": 10,
+                        "endOffset": 446
+                    }
+                }
+            }
+        ]
+    }
+]

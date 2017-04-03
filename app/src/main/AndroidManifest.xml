@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.zaafoo.preorder">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/zaafoo_logo"
+        android:label="Zaafoo"
+        android:largeHeap="true"
+        android:roundIcon="@drawable/zaafoo_logo"
+        android:supportsRtl="true"
+        android:theme="@style/AppMyTheme"
+        tools:replace="android:theme,android:label">
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <provider
+            android:name="com.facebook.FacebookContentProvider"
+            android:authorities="com.facebook.app.FacebookContentProvider1776975295915336"
+            android:exported="true" />
+
+        <activity
+            android:name=".activities.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppMyTheme.NoActionBar"
+            android:configChanges="orientation"/>
+        <activity
+            android:name=".activities.AboutRestaurant"
+            android:theme="@style/AppMyTheme.NoActionBar" />
+        <activity android:name=".activities.TableLayout" />
+        <activity android:name=".activities.MenuActivity" />
+        <activity android:name=".activities.CartActivity"
+            android:configChanges="orientation"/>
+        <activity
+            android:name=".activities.LoginActivity"
+            android:label="@string/title_activity_login" />
+        <activity
+            android:name=".activities.SignUpActivity"
+            android:label="SignUp" >
+        </activity>
+        <activity android:name=".activities.BillActivity"
+            android:configChanges="orientation"/>
+        <activity android:name=".activities.FinalPaymentActivity"
+            android:configChanges="orientation">
+            <intent-filter>
+                <data
+                    android:host="zaafoo.com"
+                    android:scheme="com.zaafoo.preorder" />
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activities.MobileVerificationActivity"
+            android:configChanges="orientation"></activity>
+        <activity
+            android:name=".activities.SplashActivity"
+            android:theme="@style/AppMyTheme.NoActionBar"
+            android:configChanges="orientation">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activities.CustomerBillView" />
+        <activity android:name=".activities.PastBooking"
+            android:configChanges="orientation"></activity>
+        <activity android:name=".activities.ManageAccount" />
+        <activity android:name=".activities.ShareUsActivity"
+            android:configChanges="orientation"/>
+        <activity android:name=".activities.PrivacyPolicyActivity"></activity>
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
