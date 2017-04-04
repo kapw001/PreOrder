@@ -83,7 +83,7 @@ public class AboutRestaurant extends AppCompatActivity {
             JSONArray  rest_details=rest_object.getJSONArray("res_details");
             rest_object=rest_details.getJSONObject(0);
             String image_url=rest_object.getString("im_url");
-            Picasso.with(this).load("http://zaafoo.com/"+image_url).into(logo);
+            Picasso.with(this).load("http://zaafoo.com/"+image_url).fit().into(logo);
 
             rest_object=new JSONObject(rest_data);
             rest_details=rest_object.getJSONArray("Discount");

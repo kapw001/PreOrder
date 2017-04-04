@@ -31,11 +31,12 @@ import io.github.luizgrp.sectionedrecyclerviewadapter.SectionedRecyclerViewAdapt
  */
 public class RestaurantFragment extends Fragment {
 
+    GridLayoutManager glm;
     ArrayList<String> localityList;
     ArrayList<Restaurant> restaurantList;
     ArrayList<ArrayList<Restaurant>> allRestList;
     SectionedRecyclerViewAdapter sectionAdapter;
-
+    int dp;
     String rest_list;
     @Nullable
     @Override
@@ -46,24 +47,43 @@ public class RestaurantFragment extends Fragment {
         restaurantList=new ArrayList<>();
         allRestList=new ArrayList<>();
         parseJSONData(rest_list);
+        dp=getResources().getDisplayMetrics().densityDpi;
         sectionAdapter = new SectionedRecyclerViewAdapter();
         for(int i=0;i<localityList.size();i++){
             sectionAdapter.addSection(new RestaurantSection(localityList.get(i),allRestList.get(i),getActivity(),allRestList,localityList));
         }
         RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.my_recycler_view);
 
-        GridLayoutManager glm = new GridLayoutManager(getContext(), 2);
-        glm.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-            @Override
-            public int getSpanSize(int position) {
-                switch(sectionAdapter.getSectionItemViewType(position)) {
-                    case SectionedRecyclerViewAdapter.VIEW_TYPE_HEADER:
-                        return 2;
-                    default:
-                        return 1;
+        // Tablet Code
+        if(dp>720) {
+            glm = new GridLayoutManager(getContext(), 3);
+            glm.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+                @Override
+                public int getSpanSize(int position) {
+                    switch(sectionAdapter.getSectionItemViewType(position)) {
+                        case SectionedRecyclerViewAdapter.VIEW_TYPE_HEADER:
+                            return 3;
+                        default:
+                            return 1;
+                    }
                 }
-            }
-        });
+            });
+        }
+        else {
+            glm = new GridLayoutManager(getContext(), 2);
+            glm.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+                @Override
+                public int getSpanSize(int position) {
+                    switch(sectionAdapter.getSectionItemViewType(position)) {
+                        case SectionedRecyclerViewAdapter.VIEW_TYPE_HEADER:
+                            return 2;
+                        default:
+                            return 1;
+                    }
+                }
+            });
+        }
+
         recyclerView.setLayoutManager(glm);
         recyclerView.setAdapter(sectionAdapter);
         return rootView;

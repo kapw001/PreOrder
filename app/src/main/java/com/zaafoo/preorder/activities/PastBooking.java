@@ -61,7 +61,7 @@ public class PastBooking extends AppCompatActivity {
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.e("response",response.toString());
+
                         try {
                             JSONArray array=response.getJSONArray("bookings");
                             for(int i=0;i<array.length();i++){
@@ -105,7 +105,7 @@ public class PastBooking extends AppCompatActivity {
                                 String total=obj.getString("total");
                                 String advance=obj.getString("advance");
                                 String bookingId=obj.getString("id");
-
+                                String bookingCancel=obj.getString("cancelled");
 
                                 Past p=new Past();
                                 p.setRestid(restid);
@@ -117,6 +117,7 @@ public class PastBooking extends AppCompatActivity {
                                 p.setTime(time);
                                 p.setBooking_success(booking_success);
                                 p.setMenu(myMenu);
+                                p.setBooking_cancelled(bookingCancel);
                                 bookings.add(p);
                             }
 

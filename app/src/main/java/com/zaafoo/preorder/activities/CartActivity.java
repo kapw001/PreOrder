@@ -34,7 +34,7 @@ public class CartActivity extends AppCompatActivity {
     CartAdapter adapter;
     int pos;
     String rest_data;
-    TextView tables,persons;
+    TextView tables,persons,date,time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +44,8 @@ public class CartActivity extends AppCompatActivity {
         Button payment=(Button)findViewById(R.id.payment);
         tables=(TextView)findViewById(R.id.no_of_tables);
         persons=(TextView)findViewById(R.id.no_of_persons);
+        date=(TextView)findViewById(R.id.date);
+        time=(TextView)findViewById(R.id.time);
         mycart=new ArrayList<>();
         Intent intent=getIntent();
         rest_data=intent.getExtras().getString("rest_data");
@@ -59,7 +61,10 @@ public class CartActivity extends AppCompatActivity {
         int per=Paper.book().read("persons");
         persons.setText(per+"");
         tables.setText(String.valueOf(noOfTables));
-
+        String d=Paper.book().read("date");
+        String t=Paper.book().read("time");
+        date.setText(d);
+        time.setText(t);
         for(int i=0;i<menuItems.size();i++){
             c=new Cart();
             c.setName(menuItems.get(i).getName());

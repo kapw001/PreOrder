@@ -64,7 +64,7 @@ public class RestaurantSection extends StatelessSection {
         ItemViewHolder itemHolder = (ItemViewHolder) holder;
         itemHolder.rest_name.setText(restaurantList.get(position).getName());
         itemHolder.rest_address.setText(restaurantList.get(position).getAddress());
-        Picasso.with(context).load("http://zaafoo.com/"+restaurantList.get(position).getImage_url()).into(itemHolder.rest_logo);
+        Picasso.with(context).load("http://zaafoo.com/"+restaurantList.get(position).getImage_url()).fit().into(itemHolder.rest_logo);
         String rate=restaurantList.get(position).getRating();
         if(rate.equals("null"))
             itemHolder.rest_rating.setRating(0);

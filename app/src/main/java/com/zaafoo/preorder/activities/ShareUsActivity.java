@@ -44,6 +44,7 @@ public class ShareUsActivity extends AppCompatActivity {
     ArrayList<Contact> contacts;
     TextView tv;
     ProgressDialog pd;
+    String offer="invalid";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +52,7 @@ public class ShareUsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_share_us);
         shareUS = (Button) findViewById(R.id.button7);
         tv=(TextView)findViewById(R.id.textView20);
-        shareUS.setEnabled(false);
+        //shareUS.setEnabled(false);
         checkIfPromoIsAvailable();
         loadActivity();
     }
@@ -72,10 +73,10 @@ public class ShareUsActivity extends AppCompatActivity {
                         try {
                             String promo=response.getString("value");
                             if(promo.equalsIgnoreCase("true")) {
-                                shareUS.setEnabled(true);
+                                offer="true";
                             }
                             else
-                                Toast.makeText(ShareUsActivity.this,"No Offers Available",Toast.LENGTH_LONG).show();
+                                offer="false";
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -230,7 +231,12 @@ public class ShareUsActivity extends AppCompatActivity {
             shareUS.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    sendContactDataToZaafoo(data);
+                    if(offer.equalsIgnoreCase("invalid"))
+                        Toast.makeText(ShareUsActivity.this,"Check Your Internet Connection..",Toast.LENGTH_SHORT).show();
+                    else if (offer.equalsIgnoreCase("false"))
+                        Toast.makeText(ShareUsActivity.this,"No Offers Available Now..",Toast.LENGTH_SHORT).show();
+                    else if(offer.equalsIgnoreCase("true"))
+                        sendContactDataToZaafoo(data);
                 }
             });
         }

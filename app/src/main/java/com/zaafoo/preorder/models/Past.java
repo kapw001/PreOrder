@@ -22,6 +22,15 @@ public class Past {
     String tables;
     ArrayList<Menu> menu;
     String booking_success;
+    String booking_cancelled;
+
+    public String getBooking_cancelled() {
+        return booking_cancelled;
+    }
+
+    public void setBooking_cancelled(String booking_cancelled) {
+        this.booking_cancelled = booking_cancelled;
+    }
 
     public String getBooking_success() {
         return booking_success;

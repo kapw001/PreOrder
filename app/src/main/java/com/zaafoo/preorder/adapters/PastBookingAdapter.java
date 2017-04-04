@@ -94,6 +94,7 @@ public class PastBookingAdapter extends RecyclerView.Adapter<PastBookingAdapter.
                 @Override
                 public void onClick(View v) {
                     Paper.book().write("bill_data",pastBookings.get(getLayoutPosition()).getMenu());
+                    Paper.book().write("booking_id",pastBookings.get(getLayoutPosition()).getBooking_id());
                     context.startActivity(new Intent(context, CustomerBillView.class));
                 }
             });
