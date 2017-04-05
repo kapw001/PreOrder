@@ -1,7 +1,12 @@
 package com.zaafoo.preorder.activities;
 
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Handler;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -87,13 +92,14 @@ public class FinalPaymentActivity extends AppCompatActivity {
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        // do anything with response
                         Toast.makeText(FinalPaymentActivity.this, "Thank You", Toast.LENGTH_SHORT).show();
+                        createNotification();
                     }
 
                     @Override
                     public void onError(ANError error) {
                         // handle error
+
                     }
                 });
     }
@@ -161,5 +167,35 @@ public class FinalPaymentActivity extends AppCompatActivity {
                 Paper.book().write("cart_items",new ArrayList<Menu>());
             }
         }, 1000);
+    }
+
+    private void createNotification() {
+
+        Paper.init(this);
+        String user=Paper.book().read("user_name");
+        String date=Paper.book().read("date");
+        String time=Paper.book().read("time");
+        ArrayList<Menu> m=Paper.book().read("cart_items",new ArrayList<Menu>());
+        String halt;
+        if(m.isEmpty())
+            halt="15";
+        else
+            halt="90";
+        Bitmap icon1 = BitmapFactory.decodeResource(getResources(), R.drawable.zaff);
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(
+                this).setAutoCancel(true)
+                .setContentTitle("Zaafoo")
+                .setSmallIcon(R.drawable.zaafoo_logo)
+                .setLargeIcon(icon1)
+                .setContentText("Thank You For Your Order");
+
+        NotificationCompat.BigTextStyle bigText = new NotificationCompat.BigTextStyle();
+        bigText.bigText("Hello,"+user.toUpperCase()+".Thank You For Chooosing Zaafoo.Your Order Shall be Ready At "+date+" "+time+".Your Booking Shall Expire After "+halt+" minutes from"+time);
+        bigText.setBigContentTitle("Zaafoo");
+        bigText.setSummaryText("Regards,Zaafoo");
+        mBuilder.setStyle(bigText);
+
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotificationManager.notify(100, mBuilder.build());
     }
 }

@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
     private void setDateAndTime() {
 
         Calendar calander = Calendar.getInstance();
+        calander.add(Calendar.MINUTE,30);
         SimpleDateFormat simpledateformat = new SimpleDateFormat("yyyy-MM-dd");
         String x = simpledateformat.format(calander.getTime());
         Paper.book().write("date",x);

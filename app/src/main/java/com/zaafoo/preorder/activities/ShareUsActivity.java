@@ -43,7 +43,6 @@ public class ShareUsActivity extends AppCompatActivity {
     JSONObject data;
     ArrayList<Contact> contacts;
     TextView tv;
-    ProgressDialog pd;
     String offer="invalid";
 
     @Override
@@ -52,7 +51,6 @@ public class ShareUsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_share_us);
         shareUS = (Button) findViewById(R.id.button7);
         tv=(TextView)findViewById(R.id.textView20);
-        //shareUS.setEnabled(false);
         checkIfPromoIsAvailable();
         loadActivity();
     }
@@ -131,7 +129,6 @@ public class ShareUsActivity extends AppCompatActivity {
     }
 
     private void sendContactDataToZaafoo(JSONObject data) {
-        createThankYouDialog();
         String token = Paper.book().read("token");
         AndroidNetworking.post("http://zaafoo.com/storeemailphno/")
                 .addJSONObjectBody(data)
@@ -204,29 +201,6 @@ public class ShareUsActivity extends AppCompatActivity {
         String[] perms = {"android.permission.READ_CONTACTS"};
         int permission = ActivityCompat.checkSelfPermission(this, "android.permission.READ_CONTACTS");
         if ((permission == PackageManager.PERMISSION_GRANTED)) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            pd=new ProgressDialog(ShareUsActivity.this);
-                            pd.setMessage("Loading");
-                            pd.setCancelable(false);
-                            pd.show();
-                        }
-                    });
-                    ArrayList<Contact> conMails = getAllEmails();
-                    ArrayList<Contact> conNumbers=getAllNumbers();
-                    data = constructJSONData(conMails,conNumbers);
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            pd.dismiss();
-                        }
-                    });
-                }
-            }).start();
 
             shareUS.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -235,8 +209,18 @@ public class ShareUsActivity extends AppCompatActivity {
                         Toast.makeText(ShareUsActivity.this,"Check Your Internet Connection..",Toast.LENGTH_SHORT).show();
                     else if (offer.equalsIgnoreCase("false"))
                         Toast.makeText(ShareUsActivity.this,"No Offers Available Now..",Toast.LENGTH_SHORT).show();
-                    else if(offer.equalsIgnoreCase("true"))
+                    else if(offer.equalsIgnoreCase("true")) {
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                ArrayList<Contact> conMails = getAllEmails();
+                                ArrayList<Contact> conNumbers=getAllNumbers();
+                                data = constructJSONData(conMails,conNumbers);
+                            }
+                        }).start();
+                        createThankYouDialog();
                         sendContactDataToZaafoo(data);
+                    }
                 }
             });
         }

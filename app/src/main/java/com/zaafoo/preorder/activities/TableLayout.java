@@ -304,9 +304,9 @@ public class TableLayout extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem item) {
 
                 final Calendar c = Calendar.getInstance();
+                c.add(Calendar.MINUTE,30);
                 mHour = c.get(Calendar.HOUR_OF_DAY);
                 mMinute = c.get(Calendar.MINUTE);
-                final int currentDay=c.get(Calendar.DAY_OF_MONTH);
 
                 // Launch Time Picker Dialog
                 TimePickerDialog timePickerDialog = new TimePickerDialog(TableLayout.this,

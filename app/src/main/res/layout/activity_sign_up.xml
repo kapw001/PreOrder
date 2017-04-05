@@ -11,9 +11,10 @@
     tools:context="com.zaafoo.preorder.activities.SignUpActivity">
 
         <ScrollView
-        android:id="@+id/login_form"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+            android:id="@+id/login_form"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none">
 
         <LinearLayout
             android:id="@+id/email_login_form"
