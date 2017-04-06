@@ -22,6 +22,10 @@ import org.json.JSONObject;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
+import io.paperdb.Paper;
 
 public class AboutRestaurant extends AppCompatActivity {
 
@@ -107,5 +111,37 @@ public class AboutRestaurant extends AppCompatActivity {
             return rest_data;
         else
             return  null;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setDateAndTime();
+    }
+
+    private void setDateAndTime() {
+
+        Calendar calander = Calendar.getInstance();
+        calander.add(Calendar.MINUTE,30);
+        if (calander.get(Calendar.MINUTE) <= 15) {
+            calander.set(Calendar.MINUTE, 15);
+        }
+        else if(calander.get(Calendar.MINUTE) > 15 && calander.get(Calendar.MINUTE) <= 30)
+            calander.set(Calendar.MINUTE, 30);
+        else if(calander.get(Calendar.MINUTE) > 30 && calander.get(Calendar.MINUTE) <= 45)
+            calander.set(Calendar.MINUTE, 45);
+        else {
+            calander.add(Calendar.HOUR_OF_DAY, 1);
+            calander.clear(Calendar.MINUTE);
+        }
+        SimpleDateFormat simpledateformat = new SimpleDateFormat("yyyy-MM-dd");
+        String x = simpledateformat.format(calander.getTime());
+        Paper.book().write("date",x);
+        simpledateformat=new SimpleDateFormat("dd");
+        int k=Integer.valueOf(simpledateformat.format(calander.getTime()));
+        Paper.book().write("day",k);
+        simpledateformat = new SimpleDateFormat("HH:mm");
+        x=simpledateformat.format(calander.getTime());
+        Paper.book().write("time",x);
     }
 }

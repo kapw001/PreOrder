@@ -67,6 +67,17 @@ public class MainActivity extends AppCompatActivity {
 
         Calendar calander = Calendar.getInstance();
         calander.add(Calendar.MINUTE,30);
+        if (calander.get(Calendar.MINUTE) <= 15) {
+            calander.set(Calendar.MINUTE, 15);
+        }
+        else if(calander.get(Calendar.MINUTE) > 15 && calander.get(Calendar.MINUTE) <= 30)
+            calander.set(Calendar.MINUTE, 30);
+        else if(calander.get(Calendar.MINUTE) > 30 && calander.get(Calendar.MINUTE) <= 45)
+            calander.set(Calendar.MINUTE, 45);
+        else {
+            calander.add(Calendar.HOUR_OF_DAY, 1);
+            calander.clear(Calendar.MINUTE);
+        }
         SimpleDateFormat simpledateformat = new SimpleDateFormat("yyyy-MM-dd");
         String x = simpledateformat.format(calander.getTime());
         Paper.book().write("date",x);

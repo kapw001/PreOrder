@@ -14,11 +14,14 @@ import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -30,6 +33,8 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.philliphsu.bottomsheetpickers.time.BottomSheetTimePickerDialog;
+import com.philliphsu.bottomsheetpickers.time.grid.GridTimePickerDialog;
 import com.zaafoo.preorder.R;
 import com.zaafoo.preorder.models.Table;
 import com.zaafoo.preorder.others.SessionManagement;
@@ -67,32 +72,17 @@ public class TableLayout extends AppCompatActivity {
         Paper.init(this);
         restid=Paper.book().read("restid");
         bookedTableNos=new ArrayList<>();
-        createInformationDialog(this);
         loadActivity(1);
     }
 
-    private void createInformationDialog(TableLayout tableLayout) {
 
-        AlertDialog.Builder builder=new AlertDialog.Builder(tableLayout);
-        builder.setTitle("Info");
-        builder.setMessage("1. Use Buttons in the Action Bar To Manipulate Time,Date & Guests.\n" +
-                "2. Please Book Between 9 a.m to 10 p.m to Avoid Booking Cancellation.\n" +
-                "3. Reserved Tables Are In Black whereas Unreserved are in Blue\n" +
-                "4. Book Tables & Food Atlest 30 minutes post current time\n" +
-                "5. Default Number of Guests: 1\n");
-        builder.setCancelable(false);
-        builder.setNeutralButton("Ok,Let Me Book", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-
-        AlertDialog dialog=builder.create();
-        dialog.show();
-    }
 
     private void loadActivity(int person) {
+
+
+        String date=Paper.book().read("date");
+        String time=Paper.book().read("time");
+        setTitle(Html.fromHtml("<small>Date : "+date+" Time : "+time+"</small>"));
 
 
         noOfPersons=person;
@@ -257,7 +247,6 @@ public class TableLayout extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.table_time_date_person, menu);
         MenuItem person_item = menu.findItem(R.id.persons);
         MenuItem date_item = menu.findItem(R.id.date);
-        MenuItem time_item = menu.findItem(R.id.time);
         person_item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -283,91 +272,27 @@ public class TableLayout extends AppCompatActivity {
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
 
-                                String date=year+"-"+(monthOfYear+1)+"-"+dayOfMonth;
-                                Paper.book().write("day",dayOfMonth);
-                                Paper.book().write("date",date);
-                                bookedTableNos=new ArrayList<String>();
-                                loadActivity(noOfPersons);
+                                String date = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
+                                Paper.book().write("day", dayOfMonth);
+                                Paper.book().write("date", date);
+                                bookedTableNos = new ArrayList<String>();
+                                Intent i=new Intent(TableLayout.this,TimeSlotActivity.class);
+                                i.putExtra("rest_data",rest_data);
+                                startActivity(i);
+                                finish();
                             }
                         }, mYear, mMonth, mDay);
-                DatePicker picker=datePickerDialog.getDatePicker();
-                picker.setMinDate(System.currentTimeMillis()-1000);
+                DatePicker picker = datePickerDialog.getDatePicker();
+                picker.setMinDate(System.currentTimeMillis() - 1000);
                 datePickerDialog.show();
 
                 return true;
             }
         });
 
-        // Time Picker
-        time_item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-
-                final Calendar c = Calendar.getInstance();
-                c.add(Calendar.MINUTE,30);
-                mHour = c.get(Calendar.HOUR_OF_DAY);
-                mMinute = c.get(Calendar.MINUTE);
-
-                // Launch Time Picker Dialog
-                TimePickerDialog timePickerDialog = new TimePickerDialog(TableLayout.this,
-                        new TimePickerDialog.OnTimeSetListener() {
-
-                            @Override
-                            public void onTimeSet(TimePicker view, int hourOfDay,
-                                                  int minute) {
-
-
-                                int day=Paper.book().read("day");
-                                int cday=c.get(Calendar.DAY_OF_MONTH);
-                                if(day==cday) {
-                                    if (hourOfDay < mHour)
-                                        Toast.makeText(TableLayout.this, "Invalid Time", Toast.LENGTH_LONG).show();
-                                    else if (hourOfDay == mHour) {
-                                        if (minute < mMinute)
-                                            Toast.makeText(TableLayout.this, "Invalid Time", Toast.LENGTH_LONG).show();
-                                        else {
-                                            String time;
-                                            if (minute < 10)
-                                                time = hourOfDay + ":0" + minute;
-                                            else
-                                                time = hourOfDay + ":" + minute;
-
-                                            Paper.book().write("time", time);
-                                            bookedTableNos = new ArrayList<String>();
-                                            loadActivity(noOfPersons);
-                                        }
-                                    } else {
-                                        String time;
-                                        if (minute < 10)
-                                            time = hourOfDay + ":0" + minute;
-                                        else
-                                            time = hourOfDay + ":" + minute;
-
-                                        Paper.book().write("time", time);
-                                        bookedTableNos = new ArrayList<String>();
-                                        loadActivity(noOfPersons);
-                                    }
-                                }
-                                else{
-                                    String time;
-                                    if (minute < 10)
-                                        time = hourOfDay + ":0" + minute;
-                                    else
-                                        time = hourOfDay + ":" + minute;
-
-                                    Paper.book().write("time", time);
-                                    bookedTableNos = new ArrayList<String>();
-                                    loadActivity(noOfPersons);
-                                }
-                            }
-                        }, mHour, mMinute, false);
-                timePickerDialog.show();
                 return true;
-            }
-        });
-
-        return true;
     }
+
 
     // Initialise Paint Colors
     private void initialiseColors(){
@@ -539,5 +464,6 @@ public class TableLayout extends AppCompatActivity {
         c.drawLine((float) (Float.parseFloat(coordinates.get(x-2))/100*(screenWidth/7)),(float) (Float.parseFloat(coordinates.get(x-1))/100*(screenWidth/7)),(float) (Float.parseFloat(coordinates.get(0))/100*(screenWidth/7)),(float) (Float.parseFloat(coordinates.get(1))/100*(screenWidth/7)),blackpaint);
 
     }
+
 
 }

@@ -15,7 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppMyTheme"
         tools:replace="android:theme,android:label">
-
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
@@ -28,25 +27,27 @@
         <activity
             android:name=".activities.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppMyTheme.NoActionBar"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppMyTheme.NoActionBar" />
         <activity
             android:name=".activities.AboutRestaurant"
             android:theme="@style/AppMyTheme.NoActionBar" />
         <activity android:name=".activities.TableLayout" />
         <activity android:name=".activities.MenuActivity" />
-        <activity android:name=".activities.CartActivity"
-            android:configChanges="orientation"/>
+        <activity
+            android:name=".activities.CartActivity"
+            android:configChanges="orientation" />
         <activity
             android:name=".activities.LoginActivity"
             android:label="@string/title_activity_login" />
         <activity
             android:name=".activities.SignUpActivity"
-            android:label="SignUp" >
-        </activity>
-        <activity android:name=".activities.BillActivity"
-            android:configChanges="orientation"/>
-        <activity android:name=".activities.FinalPaymentActivity"
+            android:label="SignUp"></activity>
+        <activity
+            android:name=".activities.BillActivity"
+            android:configChanges="orientation" />
+        <activity
+            android:name=".activities.FinalPaymentActivity"
             android:configChanges="orientation">
             <intent-filter>
                 <data
@@ -59,12 +60,13 @@
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.MobileVerificationActivity"
-            android:configChanges="orientation"></activity>
+        <activity
+            android:name=".activities.MobileVerificationActivity"
+            android:configChanges="orientation" />
         <activity
             android:name=".activities.SplashActivity"
-            android:theme="@style/AppMyTheme.NoActionBar"
-            android:configChanges="orientation">
+            android:configChanges="orientation"
+            android:theme="@style/AppMyTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -72,12 +74,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.CustomerBillView" />
-        <activity android:name=".activities.PastBooking"
-            android:configChanges="orientation"></activity>
+        <activity
+            android:name=".activities.PastBooking"
+            android:configChanges="orientation" />
         <activity android:name=".activities.ManageAccount" />
-        <activity android:name=".activities.ShareUsActivity"
-            android:configChanges="orientation"/>
-        <activity android:name=".activities.PrivacyPolicyActivity"></activity>
+        <activity
+            android:name=".activities.ShareUsActivity"
+            android:configChanges="orientation" />
+        <activity android:name=".activities.PrivacyPolicyActivity" />
         <activity
             android:name="com.facebook.CustomTabActivity"
             android:exported="true"
@@ -91,6 +95,7 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.TimeSlotActivity"></activity>
     </application>
 
 </manifest>
