@@ -44,7 +44,9 @@ public class RestaurantInfoFragment extends Fragment {
         goToBookTable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createInformationDialog();
+                Intent i=new Intent(getActivity(),TableLayout.class);
+                i.putExtra("rest_data",rest_data);
+                getActivity().startActivity(i);
             }
         });
         populateRestInfo(rest_data);
@@ -69,27 +71,5 @@ public class RestaurantInfoFragment extends Fragment {
         }
     }
 
-    private void createInformationDialog() {
 
-        AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
-        builder.setTitle("Info");
-        builder.setMessage("1. Use Buttons On The Top To Manipulate Time,Date & Guests.\n" +
-                "2. Please Book Between 9 a.m to 10 p.m to Avoid Booking Cancellation.\n" +
-                "3. Reserved Tables Are In Black whereas Unreserved are in Blue\n" +
-                "4. Book Tables & Food Atlest 30 minutes post current time\n" +
-                "5. Default Number of Guests: 1\n");
-        builder.setCancelable(false);
-        builder.setNeutralButton("Ok,Let Me Book", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-                Intent i=new Intent(getActivity(),TableLayout.class);
-                i.putExtra("rest_data",rest_data);
-                getActivity().startActivity(i);
-            }
-        });
-
-        AlertDialog dialog=builder.create();
-        dialog.show();
-    }
 }

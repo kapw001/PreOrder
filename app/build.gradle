@@ -50,6 +50,6 @@ dependencies {
     compile 'cn.carbs.android:AvatarImageView:1.0.2'
     compile 'com.appnext.sdk:appnext-sdk:2.+'
     compile 'com.facebook.android:facebook-android-sdk:4.+'
-    compile 'com.philliphsu:bottomsheetpickers:2.3.2'
+    compile 'com.yarolegovich:lovely-dialog:1.0.7'
     testCompile 'junit:junit:4.12'
 }

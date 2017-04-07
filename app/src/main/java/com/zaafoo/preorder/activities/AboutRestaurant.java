@@ -22,8 +22,10 @@ import org.json.JSONObject;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import io.paperdb.Paper;
 
@@ -33,14 +35,15 @@ public class AboutRestaurant extends AppCompatActivity {
     ImageView logo;
     static String rest_data;
     TextView discountView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_restaurant);
-        logo=(ImageView)findViewById(R.id.imageView3);
-        discountView=(TextView)findViewById(R.id.discount_view);
-        Intent i=getIntent();
-        rest_data=i.getExtras().getString("rest_data");
+        logo = (ImageView) findViewById(R.id.imageView3);
+        discountView = (TextView) findViewById(R.id.discount_view);
+        Intent i = getIntent();
+        rest_data = i.getExtras().getString("rest_data");
         populateRestaurantPage();
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.restautrant_tab_layout);
@@ -80,37 +83,38 @@ public class AboutRestaurant extends AppCompatActivity {
         bd = bd.setScale(places, RoundingMode.HALF_UP);
         return bd.doubleValue();
     }
+
     private void populateRestaurantPage() {
 
         try {
-            JSONObject rest_object=new JSONObject(rest_data);
-            JSONArray  rest_details=rest_object.getJSONArray("res_details");
-            rest_object=rest_details.getJSONObject(0);
-            String image_url=rest_object.getString("im_url");
-            Picasso.with(this).load("http://zaafoo.com/"+image_url).fit().into(logo);
+            JSONObject rest_object = new JSONObject(rest_data);
+            JSONArray rest_details = rest_object.getJSONArray("res_details");
+            rest_object = rest_details.getJSONObject(0);
+            String image_url = rest_object.getString("im_url");
+            Picasso.with(this).load("http://zaafoo.com/" + image_url).fit().into(logo);
 
-            rest_object=new JSONObject(rest_data);
-            rest_details=rest_object.getJSONArray("Discount");
-            rest_object=rest_details.getJSONObject(0);
-            String percentage=rest_object.getString("pc");
-            double per=Double.parseDouble(percentage);
-            per=per*100;
-            per=round(per,2);
-            percentage=String.valueOf(per);
-            String discount=rest_object.getString("Discount_Price");
-            discountView.setText("Get "+percentage+"% discount on an order of Rs."+discount+" & above.");
+            rest_object = new JSONObject(rest_data);
+            rest_details = rest_object.getJSONArray("Discount");
+            rest_object = rest_details.getJSONObject(0);
+            String percentage = rest_object.getString("pc");
+            double per = Double.parseDouble(percentage);
+            per = per * 100;
+            per = round(per, 2);
+            percentage = String.valueOf(per);
+            String discount = rest_object.getString("Discount_Price");
+            discountView.setText("Get " + percentage + "% discount on an order of Rs." + discount + " & above.");
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
     }
 
-    public static String giveRestDatatoFragments(){
+    public static String giveRestDatatoFragments() {
 
-        if(rest_data!=null)
+        if (rest_data != null)
             return rest_data;
         else
-            return  null;
+            return null;
     }
 
     @Override

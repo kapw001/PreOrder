@@ -33,8 +33,7 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
-import com.philliphsu.bottomsheetpickers.time.BottomSheetTimePickerDialog;
-import com.philliphsu.bottomsheetpickers.time.grid.GridTimePickerDialog;
+import com.yarolegovich.lovelydialog.LovelyInfoDialog;
 import com.zaafoo.preorder.R;
 import com.zaafoo.preorder.models.Table;
 import com.zaafoo.preorder.others.SessionManagement;
@@ -43,8 +42,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.StringTokenizer;
 
 import io.paperdb.Paper;
@@ -64,6 +66,7 @@ public class TableLayout extends AppCompatActivity {
     String restid;
     ArrayList<String> bookedTableNos;
     ProgressDialog pd;
+    Calendar c;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,17 +75,52 @@ public class TableLayout extends AppCompatActivity {
         Paper.init(this);
         restid=Paper.book().read("restid");
         bookedTableNos=new ArrayList<>();
+
+        c=Calendar.getInstance();
+        String currentTime=Paper.book().read("time");
+        SimpleDateFormat sdf=new SimpleDateFormat("HH:mm");
+        SimpleDateFormat sdfDate=new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date current=sdf.parse(currentTime);
+            Date minTime=sdf.parse("09:30");
+            Date maxTime=sdf.parse("21:30");
+            if(current.before(minTime)){
+                Paper.book().write("time","09:30");
+            }
+            else if(current.after(maxTime)) {
+                Paper.book().write("time","09:30");
+                c.add(Calendar.DAY_OF_MONTH, 1);
+                String d=sdfDate.format(c.getTime());
+                Paper.book().write("date",d);
+            }
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         loadActivity(1);
+
+        new LovelyInfoDialog(this)
+                .setTopColorRes(R.color.colorAccent)
+                .setNotShowAgainOptionEnabled(0)
+                .setNotShowAgainOptionChecked(true)
+                .setTitle("Info")
+                .setCancelable(false)
+                .setMessage("1. Use Buttons On The Top To Manipulate Time,Date & Guests.\n" +
+                        "2. Reserved Tables Are In Black whereas Unreserved are in Blue\n" +
+                        "3. Default Number of Guests: 1\n" +
+                        "4. For Table Booking,table shall remain booked for 15 mins.\n " +
+                        "5. For Table Booking & Per-Order Food,table shall remain booked for 90 mins.\n")
+                .show();
     }
 
 
 
     private void loadActivity(int person) {
 
-
-        String date=Paper.book().read("date");
         String time=Paper.book().read("time");
-        setTitle(Html.fromHtml("<small>Date : "+date+" Time : "+time+"</small>"));
+        String date=Paper.book().read("date");
+
+        setTitle(Html.fromHtml("<small>Date : "+date+", Time : "+time+"</small>"));
 
 
         noOfPersons=person;
@@ -259,7 +297,6 @@ public class TableLayout extends AppCompatActivity {
         date_item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                final Calendar c = Calendar.getInstance();
                 mYear = c.get(Calendar.YEAR);
                 mMonth = c.get(Calendar.MONTH);
                 mDay = c.get(Calendar.DAY_OF_MONTH);
@@ -283,7 +320,7 @@ public class TableLayout extends AppCompatActivity {
                             }
                         }, mYear, mMonth, mDay);
                 DatePicker picker = datePickerDialog.getDatePicker();
-                picker.setMinDate(System.currentTimeMillis() - 1000);
+                picker.setMinDate(c.getTimeInMillis() - 1000);
                 datePickerDialog.show();
 
                 return true;
