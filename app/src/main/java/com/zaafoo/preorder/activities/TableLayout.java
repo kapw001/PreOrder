@@ -100,7 +100,7 @@ public class TableLayout extends AppCompatActivity {
         loadActivity(1);
 
         new LovelyInfoDialog(this)
-                .setTopColorRes(R.color.colorAccent)
+                .setTopColorRes(R.color.colorPrimaryDark)
                 .setNotShowAgainOptionEnabled(0)
                 .setNotShowAgainOptionChecked(true)
                 .setTitle("Info")
@@ -108,8 +108,8 @@ public class TableLayout extends AppCompatActivity {
                 .setMessage("1. Use Buttons On The Top To Manipulate Time,Date & Guests.\n" +
                         "2. Reserved Tables Are In Black whereas Unreserved are in Blue\n" +
                         "3. Default Number of Guests: 1\n" +
-                        "4. For Table Booking,table shall remain booked for 15 mins.\n " +
-                        "5. For Table Booking & Per-Order Food,table shall remain booked for 90 mins.\n")
+                        "4. In Case Guest Fails To Attend The Booking,Table shall remain booked " +
+                        "for 15 mins(Table Booking) & for 90 mins(Table Booking + PerOrder)")
                 .show();
     }
 
@@ -121,7 +121,6 @@ public class TableLayout extends AppCompatActivity {
         String date=Paper.book().read("date");
 
         setTitle(Html.fromHtml("<small>Date : "+date+", Time : "+time+"</small>"));
-
 
         noOfPersons=person;
         leftPersons=noOfPersons;

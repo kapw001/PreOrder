@@ -32,6 +32,8 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 
 import io.paperdb.Paper;
@@ -135,6 +137,8 @@ public class MainActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        Collections.reverse(cityList);
         Spinner spinner = (Spinner) MenuItemCompat.getActionView(item);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.my_spinner, cityList);
         adapter.setDropDownViewResource(R.layout.my_spinner);
