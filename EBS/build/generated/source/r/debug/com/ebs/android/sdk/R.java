@@ -378,6 +378,12 @@ public final class R {
         public static int tv_note=0x7f070024;
     }
     public static final class style {
+        /** 
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        
+         */
         public static int AppBaseTheme=0x7f040002;
         public static int AppTheme=0x7f040000;
         public static int SpinnerDropDownItema=0x7f040003;

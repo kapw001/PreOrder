@@ -65,6 +65,8 @@ public class AccountFragment extends Fragment {
                 String img=Paper.book().read("profile_image");
                 if(img!=null)
                     Paper.book().delete("profile_image");
+                Paper.book().delete("email");
+                Paper.book().delete("mobile");
                 FacebookSdk.sdkInitialize(getActivity());
                 LoginManager.getInstance().logOut();
                 Intent intent = new Intent(getActivity(), SignUpActivity.class);

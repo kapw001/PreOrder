@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "736612065213",
+    "firebase_url": "https://zaafoo-test-1491600932157.firebaseio.com",
+    "project_id": "zaafoo-test-1491600932157",
+    "storage_bucket": "zaafoo-test-1491600932157.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:736612065213:android:da87c3e635702a23",
+        "android_client_info": {
+          "package_name": "com.zaafoo.preorder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "736612065213-rk5dq616t3sp0vvcvshhuht60hcjhbf4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCV30aGhIgvu4TxqJtETUdQNDiug91oTcg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

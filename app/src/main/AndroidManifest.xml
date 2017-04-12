@@ -5,6 +5,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -42,7 +43,7 @@
             android:label="@string/title_activity_login" />
         <activity
             android:name=".activities.SignUpActivity"
-            android:label="SignUp"></activity>
+            android:label="SignUp" />
         <activity
             android:name=".activities.BillActivity"
             android:configChanges="orientation" />
@@ -95,7 +96,8 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.TimeSlotActivity"></activity>
+        <activity android:name=".activities.TimeSlotActivity" />
+        <activity android:name=".activities.CustomerTableView"></activity>
     </application>
 
 </manifest>

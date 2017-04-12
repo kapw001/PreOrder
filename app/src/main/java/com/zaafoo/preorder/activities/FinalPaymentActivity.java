@@ -44,6 +44,11 @@ public class FinalPaymentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_final_payment);
         pb=(ProgressBar)findViewById(R.id.progressBar2);
+        Paper.init(this);
+
+        String email=Paper.book().read("email");
+        String number=Paper.book().read("mobile");
+
         Intent intent = getIntent();
         String referenceNo=intent.getStringExtra("reference");
         String amount=intent.getExtras().getString("amount");
@@ -76,7 +81,7 @@ public class FinalPaymentActivity extends AppCompatActivity {
 
         // Payment Code
         if(pay!=null)
-        goForPayment(user_name,"abcxyz@mail.com",amount,referenceNo);
+        goForPayment(user_name,email,amount,referenceNo,number);
     }
 
     private void sendTransactionSuccessData(String merchantRefNo, String s) {
@@ -103,7 +108,7 @@ public class FinalPaymentActivity extends AppCompatActivity {
                     }
                 });
     }
-    private void goForPayment(String user,String email,String amount,String referenceNo) {
+    private void goForPayment(String user,String email,String amount,String referenceNo,String mobile) {
 
         PaymentRequest.getInstance().setFailureid("1");
         PaymentRequest.getInstance().setTransactionAmount(amount);
@@ -128,7 +133,7 @@ public class FinalPaymentActivity extends AppCompatActivity {
         PaymentRequest.getInstance().setShippingPostalCode("NA");
         PaymentRequest.getInstance().setShippingState("NA");
         PaymentRequest.getInstance().setShippingCountry("IND");
-        PaymentRequest.getInstance().setShippingPhone("9078728771");
+        PaymentRequest.getInstance().setShippingPhone(mobile);
         // Billing Details
         PaymentRequest.getInstance().setBillingName(user);
         PaymentRequest.getInstance().setBillingEmail(email);
@@ -137,7 +142,7 @@ public class FinalPaymentActivity extends AppCompatActivity {
         PaymentRequest.getInstance().setBillingPostalCode("NA");
         PaymentRequest.getInstance().setBillingState("NA");
         PaymentRequest.getInstance().setBillingCountry("IND");
-        PaymentRequest.getInstance().setBillingPhone("9078728771");
+        PaymentRequest.getInstance().setBillingPhone(mobile);
 
         custom_post_parameters = new ArrayList<HashMap<String, String>>();
         HashMap<String, String> hashpostvalues = new HashMap<String, String>();

@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 
-import com.appnext.ads.fullscreen.FullScreenVideo;
 import com.zaafoo.preorder.R;
 import com.zaafoo.preorder.activities.AboutRestaurant;
 import com.zaafoo.preorder.adapters.MenuExpandableAdapter;

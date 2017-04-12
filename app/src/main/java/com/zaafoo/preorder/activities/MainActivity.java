@@ -15,13 +15,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.androidnetworking.interfaces.StringRequestListener;
-import com.appnext.ads.fullscreen.FullScreenVideo;
 import com.zaafoo.preorder.R;
 import com.zaafoo.preorder.adapters.PageAdapter;
 
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     static String rest_list;
     TabLayout tabLayout;
     ProgressDialog pd;
+    String token;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        token=Paper.book().read("token");
         cities = new HashMap<>();
         cityList = new ArrayList<>();
         tabLayout = (TabLayout) findViewById(R.id.tab_layout);
@@ -63,6 +66,9 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.addTab(tabLayout.newTab().setText("ACCOUNT"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         setDateAndTime();
+
+        getUserEmailAndNumber();
+
     }
 
     private void setDateAndTime() {
@@ -198,6 +204,36 @@ public class MainActivity extends AppCompatActivity {
 
     public static String returnRestList(){
         return rest_list;
+    }
+
+
+    public void getUserEmailAndNumber(){
+        AndroidNetworking.post("http://zaafoo.com/useremailview/")
+                .addHeaders("Authorization","Token "+token)
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            String number=response.getString("mobile");
+                            String email=response.getString("email");
+                            Paper.book().write("mobile",number);
+                            if(email.equalsIgnoreCase(""))
+                                email="zaafoonoreply@gmail.com";
+                            Paper.book().write("email",email);
+
+                            Toast.makeText(MainActivity.this,email+"  "+number,Toast.LENGTH_LONG).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+
+                    }
+                });
     }
 }
 

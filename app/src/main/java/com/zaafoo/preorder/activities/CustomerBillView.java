@@ -1,6 +1,7 @@
 package com.zaafoo.preorder.activities;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -25,13 +26,14 @@ import io.paperdb.Paper;
 
 public class CustomerBillView extends AppCompatActivity {
 
-    Button cancel;
+    Button cancel,viewTables;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_bill_view);
 
         cancel=(Button)findViewById(R.id.cancel_booking);
+        viewTables=(Button)findViewById(R.id.go_to_tables);
         ListView lv=(ListView)findViewById(R.id.bill_list);
         Paper.init(this);
         ArrayList<Menu> menuList= Paper.book().read("bill_data",new ArrayList<Menu>());
@@ -44,6 +46,12 @@ public class CustomerBillView extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                     cancelUserBooking(booking_id,token);
+            }
+        });
+        viewTables.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CustomerBillView.this,CustomerTableView.class));
             }
         });
     }

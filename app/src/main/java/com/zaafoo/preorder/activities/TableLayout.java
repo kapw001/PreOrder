@@ -35,6 +35,7 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.yarolegovich.lovelydialog.LovelyInfoDialog;
 import com.zaafoo.preorder.R;
+import com.zaafoo.preorder.models.FloorText;
 import com.zaafoo.preorder.models.Table;
 import com.zaafoo.preorder.others.SessionManagement;
 
@@ -67,6 +68,7 @@ public class TableLayout extends AppCompatActivity {
     ArrayList<String> bookedTableNos;
     ProgressDialog pd;
     Calendar c;
+    ArrayList<FloorText> myFloorText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +77,7 @@ public class TableLayout extends AppCompatActivity {
         Paper.init(this);
         restid=Paper.book().read("restid");
         bookedTableNos=new ArrayList<>();
+        myFloorText=new ArrayList<>();
 
         c=Calendar.getInstance();
         String currentTime=Paper.book().read("time");
@@ -149,6 +152,7 @@ public class TableLayout extends AppCompatActivity {
                 bg = Bitmap.createBitmap(screenWidth,screenHeight, Bitmap.Config.ARGB_8888);
                 canvas = new Canvas(bg);
                 drawFloorPlan(canvas);
+                drawFloorText(canvas);
                 Rect rect;
                 if(event.getAction()==MotionEvent.ACTION_UP) {
                     int x = (int) (event.getX());
@@ -190,7 +194,6 @@ public class TableLayout extends AppCompatActivity {
                     if(leftPersons<=0)
                         tryAgain();
                 }
-
                 return true;
             }
         });
@@ -213,7 +216,7 @@ public class TableLayout extends AppCompatActivity {
             bg = Bitmap.createBitmap(screenWidth, screenHeight, Bitmap.Config.ARGB_8888);
             canvas = new Canvas(bg);
             drawFloorPlan(canvas);
-
+            drawFloorText(canvas);
             for (Table t : tableList) {
 
                 x = t.getX();
@@ -237,6 +240,7 @@ public class TableLayout extends AppCompatActivity {
 
             ll.setBackgroundDrawable(new BitmapDrawable(bg));
         }
+
     }
 
 
@@ -245,7 +249,6 @@ public class TableLayout extends AppCompatActivity {
         JSONArray table_array;
         JSONObject table_object,obj;
         String floorPlan;
-        JSONObject floorObject;
         Table table;
         ArrayList<Table> tableList=new ArrayList<>();
         try {
@@ -271,6 +274,26 @@ public class TableLayout extends AppCompatActivity {
                 table.setNoOfPerson(Integer.parseInt(noOfPersons));
 
                 tableList.add(table);
+            }
+
+            JSONArray floorText=obj.getJSONArray("floortext");
+            FloorText floor;
+            JSONObject floorObject;
+            // FLoor Text Loop
+            for(int j=0;j<floorText.length();j++){
+                floor=new FloorText();
+                floorObject=floorText.getJSONObject(j);
+                String x=floorObject.getString("x");
+                String y=floorObject.getString("y");
+                String text=floorObject.getString("txt");
+                String angle=floorObject.getString("degree");
+                floor.setX(x);
+                floor.setY(y);
+                floor.setText(text);
+                floor.setAngle(angle);
+
+                myFloorText.add(floor);
+
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -334,11 +357,11 @@ public class TableLayout extends AppCompatActivity {
     private void initialiseColors(){
         pinkpaint = new Paint();
         pinkpaint.setColor(Color.parseColor("#e1336f"));
+        pinkpaint.setTextSize(25);
 
         blackpaint = new Paint();
         blackpaint.setColor(Color.parseColor("#000000"));
         blackpaint.setStrokeWidth(2);
-        blackpaint.setTextSize(30);
 
         whitepaint = new Paint();
         whitepaint.setColor(Color.parseColor("#FFFFFF"));
@@ -499,6 +522,24 @@ public class TableLayout extends AppCompatActivity {
         int x=coordinates.size();
         c.drawLine((float) (Float.parseFloat(coordinates.get(x-2))/100*(screenWidth/7)),(float) (Float.parseFloat(coordinates.get(x-1))/100*(screenWidth/7)),(float) (Float.parseFloat(coordinates.get(0))/100*(screenWidth/7)),(float) (Float.parseFloat(coordinates.get(1))/100*(screenWidth/7)),blackpaint);
 
+    }
+
+
+    public void drawFloorText(Canvas c){
+
+        ArrayList<FloorText> floor=myFloorText;
+        if(!floor.isEmpty()){
+            float x,y;
+            for(FloorText f:floor){
+                c.save();
+                x= (float) (Float.parseFloat(f.getX())*screenWidth/7);
+                y= (float) (Float.parseFloat(f.getY())*screenWidth/7);
+                c.rotate((int)Float.parseFloat(f.getAngle()), x, y);
+                c.drawText(f.getText(),x,y,pinkpaint);
+                c.restore();
+            }
+
+        }
     }
 
 

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
@@ -20,7 +21,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import io.paperdb.Paper;
 
@@ -30,12 +35,15 @@ public class PastBooking extends AppCompatActivity {
     RecyclerView recyclerView;
     ProgressDialog pd;
     String restaurant_name;
+    ArrayList<String> booking_data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_past_booking);
+        Paper.init(this);
         bookings=new ArrayList<>();
+        booking_data=new ArrayList<>();
         recyclerView = (RecyclerView)findViewById(R.id.booking_recycler_view);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
@@ -64,6 +72,11 @@ public class PastBooking extends AppCompatActivity {
 
                         try {
                             JSONArray array=response.getJSONArray("bookings");
+                            JSONObject xyz;
+                            for(int k=0;k<array.length();k++){
+                                xyz=array.getJSONObject(k);
+                                booking_data.add(xyz.toString());
+                            }
                             for(int i=0;i<array.length();i++){
                                 JSONObject obj=array.getJSONObject(i);
                                 JSONArray arr1=obj.getJSONArray("bill");
@@ -73,6 +86,9 @@ public class PastBooking extends AppCompatActivity {
                                 int z=0;
                                 String date=null;
                                 String time=null;
+                                SimpleDateFormat sdf=new SimpleDateFormat("hh:mm:ss");
+                                Date d;
+                                Calendar c=Calendar.getInstance();
                                 for(String x:dateTime.split("T")){
                                     if(z==0) {
                                         date = x;
@@ -81,6 +97,13 @@ public class PastBooking extends AppCompatActivity {
                                     else {
                                         time = x;
                                         time=time.replace("Z","");
+                                        d=sdf.parse(time);
+                                        c.setTime(d);
+                                        c.add(Calendar.HOUR_OF_DAY,5);
+                                        c.add(Calendar.MINUTE,30);
+                                        String m=sdf.format(c.getTime());
+                                        time=m;
+
                                     }
 
                                 }
@@ -121,12 +144,14 @@ public class PastBooking extends AppCompatActivity {
                                 bookings.add(p);
                             }
 
-                            RecyclerView.Adapter adapter = new PastBookingAdapter(bookings,PastBooking.this);
+                            RecyclerView.Adapter adapter = new PastBookingAdapter(bookings,PastBooking.this,booking_data);
                             recyclerView.setAdapter(adapter);
                             pd.dismiss();
                         } catch (JSONException e) {
-                            Log.e("error",e.toString());
+                            Toast.makeText(PastBooking.this,e.toString(),Toast.LENGTH_LONG).show();
                             pd.dismiss();
+                        } catch (ParseException e) {
+                            Toast.makeText(PastBooking.this,e.toString(),Toast.LENGTH_LONG).show();
                         }
                     }
                     @Override

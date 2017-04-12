@@ -27,10 +27,12 @@ public class PastBookingAdapter extends RecyclerView.Adapter<PastBookingAdapter.
 
     ArrayList<Past> pastBookings;
     Context context;
+    ArrayList<String> booking_data;
 
-    public PastBookingAdapter(ArrayList<Past> pastBookings, Context context) {
+    public PastBookingAdapter(ArrayList<Past> pastBookings, Context context, ArrayList<String> booking_data) {
         this.pastBookings = pastBookings;
         this.context = context;
+        this.booking_data=booking_data;
         Paper.init(context);
     }
 
@@ -95,6 +97,7 @@ public class PastBookingAdapter extends RecyclerView.Adapter<PastBookingAdapter.
                 public void onClick(View v) {
                     Paper.book().write("bill_data",pastBookings.get(getLayoutPosition()).getMenu());
                     Paper.book().write("booking_id",pastBookings.get(getLayoutPosition()).getBooking_id());
+                    Paper.book().write("transactions",booking_data.get(getLayoutPosition()));
                     context.startActivity(new Intent(context, CustomerBillView.class));
                 }
             });
