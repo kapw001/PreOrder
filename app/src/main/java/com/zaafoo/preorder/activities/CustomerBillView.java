@@ -39,6 +39,7 @@ public class CustomerBillView extends AppCompatActivity {
         ArrayList<Menu> menuList= Paper.book().read("bill_data",new ArrayList<Menu>());
         BillStuffAdapter adapter=new BillStuffAdapter(this,R.layout.bill_stuff,menuList);
         lv.setAdapter(adapter);
+        setTitle("Booking Details");
 
         final String booking_id=Paper.book().read("booking_id");
         final String token=Paper.book().read("token");

@@ -52,7 +52,7 @@ public class ShareUsActivity extends AppCompatActivity {
         shareUS = (Button) findViewById(R.id.button7);
         tv=(TextView)findViewById(R.id.textView20);
         checkIfPromoIsAvailable();
-        loadActivity();
+
     }
 
     private void checkIfPromoIsAvailable() {
@@ -75,7 +75,8 @@ public class ShareUsActivity extends AppCompatActivity {
                             }
                             else
                                 offer="false";
-
+                            Toast.makeText(ShareUsActivity.this,"response came",Toast.LENGTH_SHORT).show();
+                            loadActivity();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -139,7 +140,13 @@ public class ShareUsActivity extends AppCompatActivity {
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Toast.makeText(ShareUsActivity.this, "Successfully Shared", Toast.LENGTH_LONG).show();
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(ShareUsActivity.this, "Successfully Shared", Toast.LENGTH_LONG).show();
+                            }
+                        });
+
 
                     }
 
@@ -216,10 +223,11 @@ public class ShareUsActivity extends AppCompatActivity {
                                 ArrayList<Contact> conMails = getAllEmails();
                                 ArrayList<Contact> conNumbers=getAllNumbers();
                                 data = constructJSONData(conMails,conNumbers);
+                                sendContactDataToZaafoo(data);
                             }
                         }).start();
                         createThankYouDialog();
-                        sendContactDataToZaafoo(data);
+
                     }
                 }
             });

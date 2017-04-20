@@ -1,5 +1,6 @@
 package com.zaafoo.preorder.activities;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -95,15 +96,9 @@ public class MobileVerificationActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if(OTP.equals(otp.getText().toString())) {
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            sendMobileNumberToZaafoo();
-                        }
-                    }).start();
-                    startActivity(new Intent(MobileVerificationActivity.this, MainActivity.class));
+                    sendMobileNumberToZaafoo();
                     dialog.dismiss();
-                    finish();
+
                 }
                 else{
                     Toast.makeText(MobileVerificationActivity.this, "Could Not Verify..Try Again", Toast.LENGTH_SHORT).show();
@@ -123,6 +118,11 @@ public class MobileVerificationActivity extends AppCompatActivity {
     }
 
     private void sendMobileNumberToZaafoo() {
+
+        final ProgressDialog pd=new ProgressDialog(this);
+        pd.setCancelable(false);
+        pd.setMessage("Verifying Number..");
+        pd.show();
         AndroidNetworking.post("http://zaafoo.com/mobverifyview/")
                 .addHeaders("Authorization","Token "+token)
                 .addBodyParameter("mob", num)
@@ -132,11 +132,15 @@ public class MobileVerificationActivity extends AppCompatActivity {
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        pd.dismiss();
                         Toast.makeText(MobileVerificationActivity.this, "Verification Successful", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(MobileVerificationActivity.this, MainActivity.class));
+                        finish();
                     }
 
                     @Override
                     public void onError(ANError error) {
+                        pd.dismiss();
                     }
                 });
     }

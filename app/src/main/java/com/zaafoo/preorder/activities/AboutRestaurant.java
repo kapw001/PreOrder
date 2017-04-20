@@ -45,6 +45,7 @@ public class AboutRestaurant extends AppCompatActivity {
         Intent i = getIntent();
         rest_data = i.getExtras().getString("rest_data");
         populateRestaurantPage();
+        Paper.init(this);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.restautrant_tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("INFO"));
@@ -148,4 +149,6 @@ public class AboutRestaurant extends AppCompatActivity {
         x=simpledateformat.format(calander.getTime());
         Paper.book().write("time",x);
     }
+
+
 }

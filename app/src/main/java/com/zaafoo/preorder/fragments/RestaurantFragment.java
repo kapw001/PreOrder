@@ -108,6 +108,7 @@ public class RestaurantFragment extends Fragment {
                     r.setAddress(rest_object.getString("street_address"));
                     r.setImage_url(rest_object.getString("imagecontent"));
                     r.setRating(rest_object.getString("rating"));
+                    r.setDiscount(rest_object.getString("discount_pc"));
                     restaurantList.add(r);
                 }
                 allRestList.add(restaurantList);

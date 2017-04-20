@@ -32,7 +32,8 @@
             android:theme="@style/AppMyTheme.NoActionBar" />
         <activity
             android:name=".activities.AboutRestaurant"
-            android:theme="@style/AppMyTheme.NoActionBar" />
+            android:theme="@style/AppMyTheme.NoActionBar"
+            android:configChanges="orientation"/>
         <activity android:name=".activities.TableLayout" />
         <activity android:name=".activities.MenuActivity" />
         <activity
@@ -40,10 +41,12 @@
             android:configChanges="orientation" />
         <activity
             android:name=".activities.LoginActivity"
-            android:label="@string/title_activity_login" />
+            android:label="@string/title_activity_login"
+            android:configChanges="orientation"/>
         <activity
             android:name=".activities.SignUpActivity"
-            android:label="SignUp" />
+            android:label="SignUp"
+            android:configChanges="orientation"/>
         <activity
             android:name=".activities.BillActivity"
             android:configChanges="orientation" />

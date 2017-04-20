@@ -51,6 +51,7 @@ public class CartActivity extends AppCompatActivity {
         rest_data=intent.getExtras().getString("rest_data");
         menuItems=new SessionManagement(this).loadCartItems();
         int noOfTables=0;
+        setTitle("Cart");
 
         ArrayList<Table> myTables=new SessionManagement(this).loadTables();
         for(Table t:myTables){

@@ -48,7 +48,7 @@ public class PastBooking extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-
+        setTitle("Bookings");
         getPastBookings();
 
     }

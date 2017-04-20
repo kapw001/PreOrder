@@ -25,7 +25,7 @@
         android:layout_below="@+id/textView20"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="32dp"
-        android:text="Share Us"
+        android:text="Click to Share Us"
         android:textColor="#FFFFFF"
         android:background="@color/colorAccent"
         android:paddingRight="40dp"

@@ -67,7 +67,13 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         setDateAndTime();
 
-        getUserEmailAndNumber();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                getUserEmailAndNumber();
+            }
+        }).start();
+
 
     }
 
@@ -218,12 +224,12 @@ public class MainActivity extends AppCompatActivity {
                         try {
                             String number=response.getString("mobile");
                             String email=response.getString("email");
+                            String ebs_name=response.getString("name");
+                            Paper.book().write("ebs_name",ebs_name);
                             Paper.book().write("mobile",number);
                             if(email.equalsIgnoreCase(""))
-                                email="zaafoonoreply@gmail.com";
+                                email="zaafoobills@gmail.com";
                             Paper.book().write("email",email);
-
-                            Toast.makeText(MainActivity.this,email+"  "+number,Toast.LENGTH_LONG).show();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

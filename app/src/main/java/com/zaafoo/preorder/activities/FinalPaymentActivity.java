@@ -2,14 +2,18 @@ package com.zaafoo.preorder.activities;
 
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.support.v4.app.NotificationCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -46,42 +50,41 @@ public class FinalPaymentActivity extends AppCompatActivity {
         pb=(ProgressBar)findViewById(R.id.progressBar2);
         Paper.init(this);
 
-        String email=Paper.book().read("email");
-        String number=Paper.book().read("mobile");
+            String email=Paper.book().read("email");
+            String number = Paper.book().read("mobile");
 
-        Intent intent = getIntent();
-        String referenceNo=intent.getStringExtra("reference");
-        String amount=intent.getExtras().getString("amount");
-        String pay=intent.getExtras().getString("pay");
-        String payment_id = intent.getStringExtra("payment_id");
-        String user_name=Paper.book().read("user_name");
-        if(payment_id!=null) {
+            Intent intent = getIntent();
+            String referenceNo = intent.getStringExtra("reference");
+            String amount = intent.getExtras().getString("amount");
+            String pay = intent.getExtras().getString("pay");
+            String payment_id = intent.getStringExtra("payment_id");
+            String user_name = Paper.book().read("user_name");
+            if (payment_id != null) {
 
-            try {
-                JSONObject jObject=new JSONObject(payment_id);
-                PaymentStatus = jObject.getString("PaymentStatus");
-                if(PaymentStatus.equalsIgnoreCase("failed")){
-                    if(!pb.isShown())
-                        pb.setVisibility(View.VISIBLE);
-                    Toast.makeText(this,"Oops..Payment Failed",Toast.LENGTH_LONG).show();
-                    goToHome();
+                try {
+                    JSONObject jObject = new JSONObject(payment_id);
+                    PaymentStatus = jObject.getString("PaymentStatus");
+                    if (PaymentStatus.equalsIgnoreCase("failed")) {
+                        if (!pb.isShown())
+                            pb.setVisibility(View.VISIBLE);
+                        Toast.makeText(this, "Oops..Payment Failed", Toast.LENGTH_LONG).show();
+                        goToHome();
+                    } else {
+                        if (!pb.isShown())
+                            pb.setVisibility(View.VISIBLE);
+                        MerchantRefNo = jObject.getString("MerchantRefNo");
+                        sendTransactionSuccessData(MerchantRefNo, jObject.toString());
+                        goToHome();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-                else {
-                    if(!pb.isShown())
-                        pb.setVisibility(View.VISIBLE);
-                    MerchantRefNo = jObject.getString("MerchantRefNo");
-                    sendTransactionSuccessData(MerchantRefNo, jObject.toString());
-                    goToHome();
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
+
             }
 
-        }
-
-        // Payment Code
-        if(pay!=null)
-        goForPayment(user_name,email,amount,referenceNo,number);
+            // Payment Code
+            if (pay != null)
+                goForPayment(user_name, email, amount, referenceNo, number);
     }
 
     private void sendTransactionSuccessData(String merchantRefNo, String s) {
@@ -124,7 +127,7 @@ public class FinalPaymentActivity extends AppCompatActivity {
         PaymentRequest.getInstance().setHideCreditCardOption(false);
         PaymentRequest.getInstance().setHideDebitCardOption(false);
         PaymentRequest.getInstance().setHideNetBankingOption(false);
-        PaymentRequest.getInstance().setHideStoredCardOption(true);
+        PaymentRequest.getInstance().setHideStoredCardOption(false);
         // Shipping Details
         PaymentRequest.getInstance().setShippingName(user);
         PaymentRequest.getInstance().setShippingEmail(email);

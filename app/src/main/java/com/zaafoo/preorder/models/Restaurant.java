@@ -14,7 +14,15 @@ public class Restaurant {
     String latitude;
     String longitude;
     String rating;
+    String discount;
 
+    public String getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(String discount) {
+        this.discount = discount;
+    }
 
     public String getId() {
         return id;

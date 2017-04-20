@@ -59,7 +59,7 @@ public class CustomerTableView extends AppCompatActivity {
                 screenHeight=ll.getHeight();screenWidth=ll.getWidth();
             }
         });
-
+        setTitle("Tables Booked");
         initialiseColors();
         String transactions= Paper.book().read("transactions");
         prepareBookedTableData(transactions);

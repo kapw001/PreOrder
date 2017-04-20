@@ -60,6 +60,7 @@ public class MenuActivity extends AppCompatActivity {
         cuisineNameList=new ArrayList<>();
         menuInCart=new ArrayList<>();
         Paper.init(this);
+        setTitle("Menus");
 
         listView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
