@@ -75,7 +75,6 @@ public class ShareUsActivity extends AppCompatActivity {
                             }
                             else
                                 offer="false";
-                            Toast.makeText(ShareUsActivity.this,"response came",Toast.LENGTH_SHORT).show();
                             loadActivity();
                         } catch (JSONException e) {
                             e.printStackTrace();

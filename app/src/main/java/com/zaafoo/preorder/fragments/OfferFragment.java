@@ -32,7 +32,7 @@ public class OfferFragment extends Fragment {
         // Inflate the layout for this fragment
         View v=inflater.inflate(R.layout.fragment_offer, container, false);
         offer=(ImageView)v.findViewById(R.id.imageView4);
-        Picasso.with(getActivity()).load("http://zaafoo.com/static/offer.jpg").into(offer);
+        Picasso.with(getActivity()).load("http://zaafoo.com/static/offer.jpg").fit().into(offer);
         offer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
