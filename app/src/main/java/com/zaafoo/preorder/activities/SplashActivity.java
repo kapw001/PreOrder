@@ -39,7 +39,7 @@ public class SplashActivity extends AppCompatActivity {
         Paper.init(this);
         token=Paper.book().read("token");
         layout=(RelativeLayout)findViewById(R.id.splash_back);
-        layout.getBackground().setAlpha(40);
+        layout.getBackground().setAlpha(10);
         checkAndroidVersion();
     }
 

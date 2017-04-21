@@ -88,7 +88,7 @@ public class AboutRestaurant extends AppCompatActivity {
         AlertDialog.Builder alert=new AlertDialog.Builder(this);
         alert.setTitle("Warning");
         alert.setCancelable(false);
-        alert.setMessage("Dear User,You have not shared us for which you shall not be able to avail discounts..!!");
+        alert.setMessage("Dear User,You have not shared us, due to which you will not be able to avail our discounts..!!");
         alert.setPositiveButton("Share Us", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -97,7 +97,7 @@ public class AboutRestaurant extends AppCompatActivity {
             }
         });
 
-        alert.setNegativeButton("Exit", new DialogInterface.OnClickListener() {
+        alert.setNegativeButton("No,Thanks", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
@@ -183,6 +183,4 @@ public class AboutRestaurant extends AppCompatActivity {
         x=simpledateformat.format(calander.getTime());
         Paper.book().write("time",x);
     }
-
-
 }

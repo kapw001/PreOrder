@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,14 +34,18 @@ public class LoginActivity extends AppCompatActivity {
     EditText user, pass;
     ProgressDialog pd;
     TextView forgotPass;
+    LinearLayout layout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         signIn = (Button) findViewById(R.id.user_sign_in_button);
         user = (EditText) findViewById(R.id.username);
         pass = (EditText) findViewById(R.id.password);
         forgotPass=(TextView)findViewById(R.id.forgot_pass);
+        layout=(LinearLayout)findViewById(R.id.login_back);
+        layout.getBackground().setAlpha(10);
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

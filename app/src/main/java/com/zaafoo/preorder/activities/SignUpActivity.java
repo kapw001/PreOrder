@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +50,7 @@ public class SignUpActivity extends AppCompatActivity {
     CallbackManager callbackManager;
     ProfileTracker tracker;
     ArrayList<String> fbPermissions;
+    LinearLayout layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,8 @@ public class SignUpActivity extends AppCompatActivity {
         AppEventsLogger.activateApp(this);
         setContentView(R.layout.activity_sign_up);
         Paper.init(this);
+        layout=(LinearLayout)findViewById(R.id.register_back);
+        layout.getBackground().setAlpha(10);
         loginButton=(LoginButton)findViewById(R.id.login_button);
         user_field=(EditText)findViewById(R.id.username);
         email_field=(EditText)findViewById(R.id.email);
