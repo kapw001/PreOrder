@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
 
 import com.zaafoo.preorder.R;
 import com.zaafoo.preorder.activities.AboutRestaurant;
@@ -32,10 +33,6 @@ public class RestaurantMenuDisplayFragment extends Fragment {
     ArrayList<Menu> menuList;
     MenuExpandableAdapter myadapter;
     ExpandableListView listView;
-
-    public RestaurantMenuDisplayFragment() {
-        // Required empty public constructor
-    }
 
 
     @Override

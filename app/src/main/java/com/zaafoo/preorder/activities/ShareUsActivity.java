@@ -49,6 +49,7 @@ public class ShareUsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_share_us);
+        Paper.init(this);
         shareUS = (Button) findViewById(R.id.button7);
         tv=(TextView)findViewById(R.id.textView20);
         checkIfPromoIsAvailable();
@@ -145,6 +146,7 @@ public class ShareUsActivity extends AppCompatActivity {
                                 Toast.makeText(ShareUsActivity.this, "Successfully Shared", Toast.LENGTH_LONG).show();
                             }
                         });
+                        Paper.book().write("share","true");
 
 
                     }

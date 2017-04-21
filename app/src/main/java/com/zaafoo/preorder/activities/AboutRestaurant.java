@@ -1,8 +1,10 @@
 package com.zaafoo.preorder.activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
+import com.yarolegovich.lovelydialog.LovelyInfoDialog;
 import com.zaafoo.preorder.R;
 import com.zaafoo.preorder.adapters.PageAdapter;
 import com.zaafoo.preorder.adapters.RestaurantPageAdapter;
@@ -73,6 +76,37 @@ public class AboutRestaurant extends AppCompatActivity {
 
             }
         });
+
+        String shared=Paper.book().read("share");
+        if(shared==null || (!shared.equalsIgnoreCase("true")))
+        createOfferDialog();
+
+    }
+
+    private void createOfferDialog() {
+
+        AlertDialog.Builder alert=new AlertDialog.Builder(this);
+        alert.setTitle("Warning");
+        alert.setCancelable(false);
+        alert.setMessage("Dear User,You have not shared us for which you shall not be able to avail discounts..!!");
+        alert.setPositiveButton("Share Us", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    startActivity(new Intent(AboutRestaurant.this,ShareUsActivity.class));
+            }
+        });
+
+        alert.setNegativeButton("Exit", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog dialog=alert.create();
+        dialog.show();
+
 
     }
 

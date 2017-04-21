@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@drawable/back"
+    android:id="@+id/splash_back"
     tools:context="com.zaafoo.preorder.activities.SplashActivity">
 
 
     <TextView
         android:id="@+id/textView11"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/colorAccent"
         android:textStyle="bold"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

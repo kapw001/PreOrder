@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
@@ -30,12 +31,15 @@ public class SplashActivity extends AppCompatActivity {
     String token;
     static String rest_list;
     static String city_data;
+    RelativeLayout layout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         Paper.init(this);
         token=Paper.book().read("token");
+        layout=(RelativeLayout)findViewById(R.id.splash_back);
+        layout.getBackground().setAlpha(40);
         checkAndroidVersion();
     }
 
