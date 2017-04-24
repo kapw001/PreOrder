@@ -46,6 +46,8 @@ public class MenuActivity extends AppCompatActivity {
     ArrayList<Menu> menuInCart;
     Menu myMenu;
     Button skip_menu,goToCart;
+    private TextView textCartItemCount;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -164,6 +166,8 @@ public class MenuActivity extends AppCompatActivity {
                 else{
                     new SessionManagement(MenuActivity.this).addCartItems(myMenu);
                     Toast.makeText(MenuActivity.this,"Item Added To Cart",Toast.LENGTH_SHORT).show();
+                    ArrayList<Menu> abc=new SessionManagement(MenuActivity.this).loadCartItems();
+                    textCartItemCount.setText(abc.size()+"");
                 }
             }
         });
@@ -235,17 +239,27 @@ public class MenuActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(android.view.Menu menu) {
         getMenuInflater().inflate(R.menu.menu_cart, menu);
         MenuItem cart_item = menu.findItem(R.id.cart);
-        cart_item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+
+        View actionView = MenuItemCompat.getActionView(cart_item);
+        textCartItemCount = (TextView) actionView.findViewById(R.id.cart_badge);
+
+        actionView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onMenuItemClick(MenuItem item) {
+            public void onClick(View v) {
                 Intent i=new Intent(MenuActivity.this,CartActivity.class);
                 i.putExtra("rest_data",rest_data);
                 startActivity(i);
-                return true;
+
             }
         });
         return true;
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        ArrayList<Menu> abc=new SessionManagement(MenuActivity.this).loadCartItems();
+        textCartItemCount.setText(abc.size()+"");
+    }
 }
 

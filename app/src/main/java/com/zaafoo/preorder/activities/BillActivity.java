@@ -1,5 +1,6 @@
 package com.zaafoo.preorder.activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -43,6 +44,7 @@ public class BillActivity extends AppCompatActivity {
     ListView lv;
     String rest_data;
     String token;
+    ProgressDialog pd;
 
 
     @Override
@@ -144,6 +146,10 @@ public class BillActivity extends AppCompatActivity {
 
     private void getBillDetails() {
 
+        pd=new ProgressDialog(this);
+        pd.setMessage("Preparing Bill");
+        pd.setCancelable(false);
+        pd.show();
         AndroidNetworking.post("http://zaafoo.com/calculatebillview/")
                 .addJSONObjectBody(bill_object)
                 .addHeaders("Authorization","Token "+token)// posting json
@@ -169,8 +175,10 @@ public class BillActivity extends AppCompatActivity {
 
                             BillListAdapter adap=new BillListAdapter(BillActivity.this,R.layout.bill_final_list,bill_data);
                             lv.setAdapter(adap);
+                            pd.dismiss();
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            pd.dismiss();
                         }
 
 
@@ -178,6 +186,7 @@ public class BillActivity extends AppCompatActivity {
                     }
                     @Override
                     public void onError(ANError error) {
+                        pd.dismiss();
                     }
                 });
 

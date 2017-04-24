@@ -181,7 +181,7 @@ public class CustomerTableView extends AppCompatActivity {
     private void initialiseColors(){
         pinkpaint = new Paint();
         pinkpaint.setColor(Color.parseColor("#e1336f"));
-        pinkpaint.setTextSize(30);
+        pinkpaint.setTextSize(25);
 
         blackpaint = new Paint();
         blackpaint.setColor(Color.parseColor("#000000"));
@@ -189,7 +189,7 @@ public class CustomerTableView extends AppCompatActivity {
 
         whitepaint = new Paint();
         whitepaint.setColor(Color.parseColor("#FFFFFF"));
-        whitepaint.setTextSize(20);
+        whitepaint.setTextSize(15);
         whitepaint.setTextAlign(Paint.Align.CENTER);
 
         bluepaint = new Paint();

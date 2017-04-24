@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -343,6 +344,8 @@ public class TableLayout extends AppCompatActivity {
                         }, mYear, mMonth, mDay);
                 DatePicker picker = datePickerDialog.getDatePicker();
                 picker.setMinDate(c.getTimeInMillis() - 1000);
+                picker.setMaxDate((c.getTimeInMillis()-1000)+(1000*60*60*24*10));
+                picker.setCalendarViewShown(false);
                 datePickerDialog.show();
 
                 return true;
@@ -365,7 +368,7 @@ public class TableLayout extends AppCompatActivity {
 
         whitepaint = new Paint();
         whitepaint.setColor(Color.parseColor("#FFFFFF"));
-        whitepaint.setTextSize(20);
+        whitepaint.setTextSize(15);
         whitepaint.setTextAlign(Paint.Align.CENTER);
 
         bluepaint = new Paint();
@@ -542,5 +545,7 @@ public class TableLayout extends AppCompatActivity {
         }
     }
 
-
+    public static int pxToDp(int px) {
+        return (int) (px / Resources.getSystem().getDisplayMetrics().density);
+    }
 }
