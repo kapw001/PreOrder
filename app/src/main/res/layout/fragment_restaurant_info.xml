@@ -1,5 +1,5 @@
 
-<ScrollView
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -13,6 +13,7 @@
 
         <!-- TODO: Update blank fragment layout -->
 
+                
                 <TextView
                     android:id="@+id/textView"
                     android:textColor="@color/colorAccent"
@@ -83,7 +84,9 @@
                     android:layout_marginTop="30dp"
                     android:layout_gravity="bottom"/>
 
-        </LinearLayout>
+
+
+</LinearLayout>
 
 </ScrollView>
 

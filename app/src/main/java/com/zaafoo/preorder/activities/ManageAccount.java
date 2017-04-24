@@ -59,7 +59,7 @@ public class ManageAccount extends AppCompatActivity {
                             @Override
                             public void onError(ANError error) {
                                 // handle error
-                                Toast.makeText(ManageAccount.this,error.getErrorDetail(),Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ManageAccount.this,"Something went wrong..",Toast.LENGTH_SHORT).show();
                             }
                         });
             }
