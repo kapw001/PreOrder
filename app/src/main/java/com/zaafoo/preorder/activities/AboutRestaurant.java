@@ -77,8 +77,10 @@ public class AboutRestaurant extends AppCompatActivity {
             }
         });
 
-        String shared=Paper.book().read("share");
-        if(shared==null || (!shared.equalsIgnoreCase("true")))
+        // Creating Offer Dialog Logic
+        String shared=Paper.book().read("share","xyz");
+        boolean isshared=shared.equalsIgnoreCase("true");
+        if(!isshared)
         createOfferDialog();
 
     }

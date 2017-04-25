@@ -7,6 +7,8 @@ import android.graphics.Color;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -41,6 +43,8 @@ public class RestaurantSection extends StatelessSection {
     ArrayList<String> localityList;
     int layoutpos=0;
     ProgressDialog pd;
+    int lastPosition = -1;
+
     public RestaurantSection(String title, ArrayList<Restaurant> restaurantList, Context context, ArrayList<ArrayList<Restaurant>> allRestList, ArrayList<String> localityList) {
         super(R.layout.section_ex5_header, R.layout.restaurant_single_view);
         this.title=title;
@@ -86,6 +90,15 @@ public class RestaurantSection extends StatelessSection {
         }
         else
             itemHolder.rest_rating.setVisibility(View.GONE);
+
+        if(position >lastPosition) {
+
+            // Animation Code
+            Animation animation = AnimationUtils.loadAnimation(context,
+                    R.anim.up_from_bottom);
+            itemHolder.itemView.startAnimation(animation);
+            lastPosition = position;
+        }
     }
 
     @Override

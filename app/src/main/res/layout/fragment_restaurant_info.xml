@@ -13,7 +13,22 @@
 
         <!-- TODO: Update blank fragment layout -->
 
-                
+
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_rounded_other"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:text="Book Table"
+                    android:textStyle="bold"
+                    android:elevation="10dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_gravity="bottom"/>
+
+
                 <TextView
                     android:id="@+id/textView"
                     android:textColor="@color/colorAccent"
@@ -71,18 +86,7 @@
                     android:text="TextView" />
 
 
-                <Button
-                    android:id="@+id/button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/button_rounded_other"
-                    android:textColor="#FFFFFF"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:text="Book Table"
-                    android:elevation="10dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_gravity="bottom"/>
+
 
 
 

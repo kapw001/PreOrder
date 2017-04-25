@@ -3,8 +3,10 @@ package com.zaafoo.preorder.activities;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.net.Uri;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -144,19 +146,19 @@ public class ShareUsActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 Toast.makeText(ShareUsActivity.this, "Successfully Shared", Toast.LENGTH_LONG).show();
+                                Paper.book().write("share","true");
                             }
                         });
-                        Paper.book().write("share","true");
-
-
                     }
 
                     @Override
-                    public void onError(ANError anError) {
-
+                    public void onError(final ANError anError) {
                     }
                 });
     }
+
+
+
 
     private void createThankYouDialog() {
         AlertDialog.Builder builder=new AlertDialog.Builder(this);
